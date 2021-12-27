@@ -1,27 +1,26 @@
 import fetch from 'node-fetch';
 
-const surnameCount = () => {
+const surnameCount = async x => { 
+  let input = x;
 
-    let input = "graziano";
+  const response = await fetch('https://www.names.org/n/'+input+'/about#');
+  const data = await response.text();
+  const param_data = data.substring(
+          data.lastIndexOf("the U.S. Census Bureau surveyed") + 32,
+          data.lastIndexOf("people with the last name")
+        );
 
-    const response = await fetch('https://www.names.org/n/'+input+'/about#');
-    const data = await response.text();
-    const param_data = data.substring(
-              data.lastIndexOf("the U.S. Census Bureau surveyed") + 32,
-              data.lastIndexOf("people with the last name")
-            );
+  let result = parseFloat(param_data.replace(/,/g, ''));
 
-    const p1d = parseFloat(param_data.replace(/,/g, ''));
+  if(input === ""){
+    input = "no name entered";
+  }
 
-    let result = p1d;
+  if(Number.isNaN(result)){
+     result = "there are no results for that name";
+  };
 
-    if(input === ""){
-      input = "no name entered";
-    }
-
-    if(Number.isNaN(result)){
-       result = "there are no results for that name";
-    };
-    return result
+  return result;
 }
+
 module.export = {surnameCount:surnameCount}
