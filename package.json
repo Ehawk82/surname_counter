@@ -1,5 +1,6 @@
 {
   "name": "surname_counter",
+  "type": "module",
   "version": "1.0.0",
   "description": "a nodeJS module that will help scrape the internet for the occurrence rate of any surname in the United States",
   "main": "index.js",
