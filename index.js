@@ -20,7 +20,7 @@ const surnameCount = async x => {
      result = "there are no results for that name";
   };
 
-  return result;
-}
+  return console.log(result);
+};
 
-module.export = {surnameCount:surnameCount}
+export default function(x){ surnameCount(x) };
